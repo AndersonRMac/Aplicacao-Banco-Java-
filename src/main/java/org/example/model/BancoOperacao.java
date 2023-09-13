@@ -15,15 +15,12 @@ public class BancoOperacao {
 
         System.out.println("Informe seu nome: ");
         nome = in.nextLine();
-
         System.out.println("Informe seu saldo: ");
         saldo = in.nextDouble();
-
         System.out.println("-------------------------------------------------------");
         System.out.println("Seja bem vindo " + nome);
         System.out.println("-------------------------------------------------------");
         Conta user = new Conta(nome, saldo);
-
 
             while ((nome != null) | (saldo != 0)){
             System.out.println("Que serviços você deseja utilizar?");
@@ -33,7 +30,6 @@ public class BancoOperacao {
             System.out.println("3 - Fazer um depósito");
             System.out.println("4 - Fazer uma transferência");
             servico = in.nextInt();
-
             System.out.println("-------------------------------------------------------");
 
             switch (servico){
