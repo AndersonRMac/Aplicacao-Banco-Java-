@@ -1,25 +1,34 @@
-package org.example.contaModel;
+package org.example.model;
 
 public class Conta {
     private String nome;
     private Double saldo;
 
+    //atualizar para printf depois
     public void MostraSaldo(){
-        System.out.println("Saldo atual de "+ getNome() + " = " + saldo);
+        System.out.println("Saldo atual de "+ getNome() + " = " + " R$ " + getSaldo());
+    }
+    public void deposito(double deposito) {
+        if (deposito > 0){
+            saldo = saldo + deposito;
+            setSaldo(saldo);
+            System.out.println("Seu novo saldo é " + getSaldo());
+        }else System.out.println("Valor de deposito inválido!");
     }
 
     public void saque(Double valor){
 
         double limiteDiario = 400.00;
 
-        if (valor > saldo | valor < limiteDiario){
-
+        if (valor >= saldo | valor <= limiteDiario){
             saldo = saldo - valor;
+            setSaldo(saldo);
+
             System.out.println("Saque realizado com sucesso!");
-            System.out.println("Seu novo saldo é: " + saldo);
+            System.out.println("Seu novo saldo é: " + getSaldo());
 
         } else if (valor > limiteDiario) {
-            System.out.println("Valor acima do limite diário permitido. Entre com outro valor.");
+            System.out.println("Valor acima do limite diário permitido.");
         } else{
             System.out.println("Valor solicitado, indisponível. Solicite outro valor!");
         }
@@ -56,4 +65,6 @@ public class Conta {
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
+
+
 }
