@@ -4,6 +4,8 @@ public class Conta {
     private String nome;
     private Double saldo;
 
+
+
     //atualizar para printf depois
     public void MostraSaldo(){
         System.out.println("Saldo atual de "+ getNome() + " = " + " R$ " + getSaldo());
@@ -35,11 +37,12 @@ public class Conta {
 
     }
 
-    public void transfere(Conta destino, double valor){
+    public void transfere(String destino, double valor){
 
         if (valor < saldo){
-            this.saldo = this.saldo - valor;
-            destino.saldo = destino.saldo + valor;
+            saldo = saldo - valor;
+
+            System.out.println("Transferência para " + destino + " no valor de " + " R$ " + valor + " executada!");
         }else{
             System.out.println("Valor inválido, favor entrar com outro valor!!");
         }
