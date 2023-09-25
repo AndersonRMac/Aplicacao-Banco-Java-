@@ -37,14 +37,17 @@ public class Conta {
 
     }
 
-    public void transfere(String destino, double valor){
+    public int  transfere(String destino, double valor){
 
         if (valor < saldo){
-            saldo = saldo - valor;
 
+            saldo = saldo - valor;
             System.out.println("Transferência para " + destino + " no valor de " + " R$ " + valor + " executada!");
+            return  1;
+
         }else{
-            System.out.println("Valor inválido, favor entrar com outro valor!!");
+            System.out.println("Valor maior que o saldo atual!!");
+            return 2;
         }
     }
 

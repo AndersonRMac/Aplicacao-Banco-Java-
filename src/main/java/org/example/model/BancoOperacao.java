@@ -1,6 +1,7 @@
 package org.example.model;
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BancoOperacao {
@@ -32,44 +33,66 @@ public class BancoOperacao {
             servico = in.nextInt();
             System.out.println("-------------------------------------------------------");
 
-            switch (servico){
-                case 1 :
+            switch (servico) {
+                case 1:
                     user.MostraSaldo();
                     System.out.println("-------------------------------------------------------");
                     System.out.println("Deseja usar outro serviço? S ou N: ");
                     decicao = in.next();
                     if (decicao.equals("S"))
-                    break;
-                    else System.exit(1);
-                case 2 :
-                    System.out.println("Digite o valor que você quer sacar: ");
-                    double saque = in.nextDouble();
-                    user.saque(saque);
-                    System.out.println("Deseja usar outro serviço? S ou N: ");
-                    decicao = in.next();
-                    if (decicao.equals("S"))
                         break;
                     else System.exit(1);
+                case 2:
+
+                    try {
+                        System.out.println("Digite o valor que você quer sacar: ");
+                        double saque = in.nextDouble();
+                        user.saque(saque);
+                        System.out.println("Deseja usar outro serviço? S ou N: ");
+                        decicao = in.next();
+                        if (decicao.equals("S"))
+                            break;
+                        else System.exit(1);
+                    } catch (InputMismatchException ime) {
+                        System.out.println("Entrada inválida. Recomeçe a operação!");
+                        System.exit(1);
+                    }
                 case 3:
-                    System.out.println("Digite o valor que você quer depositar: ");
-                    double deposito= in.nextDouble();
-                    user.deposito(deposito);
-                    System.out.println("Deseja usar outro serviço? S ou N: ");
-                    decicao = in.next();
-                    if (decicao.equals("S"))
-                        break;
-                    else System.exit(1);
+                    try {
+                        System.out.println("Digite o valor que você quer depositar: ");
+                        double deposito = in.nextDouble();
+                        user.deposito(deposito);
+                        System.out.println("Deseja usar outro serviço? S ou N: ");
+                        decicao = in.next();
+                        if (decicao.equals("S"))
+                            break;
+                        else System.exit(1);
+                        } catch (InputMismatchException ime){
+                            System.out.println("Entrada inválida. Recomeçe a operação!");
+                            System.exit(1);
+                        }
                 case 4:
-                    System.out.println("Digite o nome do titular da conta que você vai transferir: ");
-                    String userDest = in.next();
-                    System.out.println("Digite o valor que você quer transferir: ");
-                    double valorTransf = in.nextDouble();
-                    user.transfere(userDest, valorTransf);
-                    System.out.println("Deseja usar outro serviço? S ou N: ");
-                    decicao = in.next();
-                    if (decicao.equals("S"))
-                        break;
-                    else System.exit(1);
+                    try {
+                        System.out.println("Digite o nome do titular da conta que você vai transferir: ");
+                        String userDest = in.next();
+                        System.out.println("Digite o valor que você quer transferir: ");
+                        double valorTransf = in.nextDouble();
+
+                        if(user.transfere(userDest, valorTransf) == 1){
+                            System.out.println("Deseja usar outro serviço? S ou N: ");
+                            decicao = in.next();
+                            if (decicao.equals("S"))
+                                break;
+                            else System.exit(1);
+                        }else {
+
+                            System.exit(1);
+                        };
+
+                    }catch (InputMismatchException im){
+                        System.out.println("Entrada inválida. Recomeçe a operação!");
+                        System.exit(1);
+                    }
                 default:
                     System.out.println("Opção Inválida!");
                     System.out.println("-------------------------------------------------------");
